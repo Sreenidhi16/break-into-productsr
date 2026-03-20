@@ -163,8 +163,19 @@
     font-size: 1rem; font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
+    text-decoration: none;
   }
   .btn-secondary:hover { border-color: var(--ink); }
+
+  .btn-linkedin-hero {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: #0077b5; color: white;
+    padding: 16px 28px; border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-linkedin-hero:hover { background: #005f91; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,119,181,0.3); }
 
   /* HERO CARD */
   .hero-card {
@@ -874,19 +885,77 @@
     50% { opacity: 0.5; transform: scale(1.4); }
   }
 
-  /* RESPONSIVE */
+  /* RESPONSIVE — MOBILE FIRST */
   @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
-    .hero { padding: 100px 20px 60px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    nav { padding: 14px 16px; }
+    .nav-logo { font-size: 1rem; }
+    .nav-linkedin { padding: 8px 10px; font-size: 0; gap: 0; }
+    .nav-linkedin svg { width: 18px; height: 18px; }
+    .nav-cta { padding: 9px 16px; font-size: 0.82rem; }
+
+    .hero { padding: 90px 16px 50px; min-height: auto; }
+    .hero-inner { grid-template-columns: 1fr; gap: 32px; }
     .hero-card { display: none; }
-    section { padding: 70px 20px; }
-    .personas-grid { grid-template-columns: 1fr; }
-    .offerings-grid { grid-template-columns: 1fr; }
-    .reviews-grid { grid-template-columns: 1fr; }
+    .hero-headline { font-size: 2.6rem; }
+    .hero-sub { font-size: 0.97rem; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; padding: 15px 20px; }
+
+    .ticker-wrap { padding: 12px 0; }
+
+    section { padding: 56px 16px; }
+
+    .section-title { font-size: 1.9rem; }
+
+    .personas-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
+    .persona-card { padding: 24px; }
+
+    .offerings-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
+    .offering-card { padding: 24px; }
+
     .blueprint-inner { grid-template-columns: 1fr; gap: 40px; }
-    .modal { padding: 32px 24px; }
-    .persona-options { grid-template-columns: 1fr; }
+    .blueprint-right { padding-top: 0; }
+
+    .oon-grid { grid-template-columns: 1fr; gap: 36px; }
+    .oon-pills { gap: 8px; }
+    .oon-pill { font-size: 0.85rem; padding: 11px 14px; }
+    .mock-card { margin-bottom: 12px; }
+    .mock-prompt p { font-size: 0.82rem; }
+    .mock-feedback { padding: 12px 14px; }
+    .mock-fb-text { font-size: 0.8rem; }
+
+    .reviews-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
+    .review-card { padding: 22px; }
+    .review-text { font-size: 0.87rem; }
+    .preplaced-banner { flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px; }
+
+    .final-cta { padding: 70px 16px; }
+
+    .sticky-contact { padding: 10px 16px; }
+    .sticky-contact-left div span { display: none; }
+    .sticky-contact-left div strong { font-size: 0.82rem; }
+    .sticky-linkedin { padding: 9px 14px; font-size: 0.82rem; }
+    .sticky-cta { padding: 9px 16px; font-size: 0.82rem; }
+
+    .modal { padding: 28px 18px; border-radius: 20px; }
+    .modal h2 { font-size: 1.5rem; }
+    .persona-options { grid-template-columns: 1fr !important; }
+    .persona-option { padding: 16px; }
+
+    .admin-toggle { bottom: 70px; left: 12px; font-size: 0.75rem; padding: 8px 14px; }
+    .leads-panel { left: 12px; width: calc(100vw - 24px); bottom: 110px; }
+    .notif-panel { right: 12px; left: 12px; max-width: none; bottom: 70px; }
+
+    footer { padding: 24px 16px 90px; font-size: 0.8rem; }
+  }
+
+  @media (max-width: 900px) and (min-width: 769px) {
+    .personas-grid { grid-template-columns: repeat(2, 1fr); }
+    .offerings-grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .hero-inner { grid-template-columns: 1fr 340px; gap: 40px; }
+    .blueprint-inner { grid-template-columns: 1fr; gap: 40px; }
+    .oon-grid { grid-template-columns: 1fr; gap: 40px; }
   }
 </style>
 </head>
@@ -910,23 +979,26 @@
   <div class="hero-grid"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow">🇮🇳 Mentoring from Bengaluru · Senior Product Manager @ JPMorganChase</div>
+      <div class="hero-eyebrow">🇮🇳 Mentoring from Bengaluru · 8+ Years in Product</div>
       <h1 class="hero-headline">
         Break into <em>Product.</em><br>Level up in it.
       </h1>
       <p class="hero-sub">
-        1:1 mentorship by <strong>Sreenidhi Chandar</strong> — for freshers breaking in, professionals switching roles, and experienced folks levelling up in PM, PO & BA careers. Real frameworks, AI tools, and 8+ years of product practice.
+        1:1 mentorship by <strong>Sreenidhi Chandar</strong> — for freshers breaking in, professionals switching roles, and experienced folks levelling up in PM, PO & BA careers. Real frameworks, AI tools, and hands-on practice.
       </p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="openModal()">I'm Interested <span>→</span></button>
-        <button class="btn-secondary" onclick="document.getElementById('offerings').scrollIntoView({behavior:'smooth'})">See Offerings</button>
+        <button class="btn-primary" onclick="openModal()">I'm Interested →</button>
+        <a href="https://www.linkedin.com/in/sreenidhichandar/" target="_blank" class="btn-linkedin-hero">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          View my LinkedIn
+        </a>
       </div>
     </div>
 
     <div class="hero-card">
       <div class="hero-card-avatar">SC</div>
       <h3>Sreenidhi Chandar</h3>
-      <p class="role">Senior Product Manager · JPMorganChase · Thoughtworks · Wells Fargo</p>
+      <p class="role">Senior Product Manager · 8+ Years in Product · Verified on Preplaced</p>
       <div class="stats">
         <div class="stat-box">
           <span class="num">50+</span>
@@ -1052,7 +1124,7 @@
       <div class="persona-card ai-card" onclick="openModal('fresher')">
         <span class="persona-icon">🤖</span>
         <h3>AI-Powered Product Work</h3>
-        <p>Learn how practitioners at JPMorgan and Thoughtworks actually use AI in day-to-day product work — not theory, real workflows.</p>
+        <p>Learn how senior product practitioners actually use AI in day-to-day work — not theory, not a YouTube tutorial. Real workflows you can apply from day one.</p>
         <ul class="persona-pains">
           <li>Writing PRDs and user stories using AI in minutes</li>
           <li>Competitor & market research with AI tools</li>
@@ -1244,8 +1316,8 @@
               <div class="mock-cursor"></div>
             </div>
             <div class="mock-feedback">
-              <div class="mock-fb-label">Sreenidhi's feedback</div>
-              <div class="mock-fb-text">Good structure on stakeholders. Now add the versioning impact — BRD version 1.1.2 needs to change. What's your AC for the switch?</div>
+              <div class="mock-fb-label">Live Coaching · In Session</div>
+              <div class="mock-fb-text">You've identified the right stakeholders — good instinct. Now let's think about the end-to-end: what does your user story look like, what are the acceptance criteria, and how does this change ripple across your documentation?</div>
             </div>
             <div class="mock-meta">
               <span>🎯 Case Study Round</span>
@@ -1256,10 +1328,10 @@
         </div>
 
         <div class="connections-card">
-          <div class="conn-icon">🤝</div>
+          <div class="conn-icon">🌱</div>
           <div>
-            <strong>I'll introduce you to my network</strong>
-            <p>Hiring managers, PMs, BAs across startups and MNCs. The right referral can change everything.</p>
+            <strong>Community & Connections, built together</strong>
+            <p>As part of this journey, you'll naturally grow your circle — through conversations, guidance, and being part of a community of people who are genuinely invested in product careers.</p>
           </div>
         </div>
       </div>
@@ -1353,8 +1425,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Sreenidhi Chandar · Senior Product Manager · JPMorganChase · Bengaluru, India</p>
-  <p style="margin-top:8px;"><a href="https://www.linkedin.com/in/sreenidhichandar/" target="_blank">LinkedIn ↗</a> · All sessions conducted over Google Meet · Mentoring on Preplaced.in</p>
+  <p>© 2025 Sreenidhi Chandar · Senior Product Manager · Bengaluru, India</p>
+  <p style="margin-top:8px;"><a href="https://www.linkedin.com/in/sreenidhichandar/" target="_blank">LinkedIn ↗</a> · All sessions conducted over Google Meet · Verified Mentor on Preplaced.in</p>
 </footer>
 
 <!-- MODAL -->
@@ -1480,7 +1552,7 @@
     <div class="sticky-avatar">SC</div>
     <div>
       <strong>Sreenidhi Chandar</strong>
-      <span>Senior PM @ JPMorganChase · Open to mentoring</span>
+      <span>Senior Product Manager · Open to mentoring</span>
     </div>
   </div>
   <div class="sticky-contact-right">
