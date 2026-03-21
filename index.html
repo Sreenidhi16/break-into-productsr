@@ -786,50 +786,55 @@
     display: flex; align-items: center; justify-content: space-between; gap: 16px;
     box-shadow: 0 -8px 32px rgba(0,0,0,0.08);
   }
-  .sticky-contact-left { display: flex; align-items: center; gap: 12px; }
+  /* STICKY CONTACT BAR */
+  .sticky-contact {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+    background: white;
+    border-top: 1px solid var(--border);
+    padding: 10px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.07);
+  }
+  .sticky-contact-left {
+    display: flex; align-items: center; gap: 10px;
+    min-width: 0; flex: 1;
+  }
   .sticky-avatar {
-    width: 38px; height: 38px; border-radius: 50%;
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
     background: linear-gradient(135deg, var(--accent), #e8724a);
     display: flex; align-items: center; justify-content: center;
-    font-weight: 700; color: white; font-size: 0.85rem; flex-shrink: 0;
+    font-weight: 700; color: white; font-size: 0.8rem;
   }
-  .sticky-contact-left div strong { font-size: 0.88rem; font-weight: 600; display:block; }
-  .sticky-contact-left div span { font-size: 0.75rem; color: var(--muted); }
-  .sticky-contact-right { display: flex; align-items: center; gap: 10px; }
+  .sticky-text { min-width: 0; }
+  .sticky-text strong { font-size: 0.85rem; font-weight: 600; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sticky-text span { font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+  .sticky-contact-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
   .sticky-linkedin {
-    display: inline-flex; align-items: center; gap: 7px;
+    display: inline-flex; align-items: center; gap: 6px;
     background: #0077b5; color: white;
-    padding: 10px 20px; border-radius: 100px;
-    font-size: 0.88rem; font-weight: 600;
-    text-decoration: none; transition: all 0.2s;
+    padding: 9px 16px; border-radius: 100px;
+    font-size: 0.83rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; white-space: nowrap;
   }
   .sticky-linkedin:hover { background: #005f91; }
   .sticky-cta {
     background: var(--accent); color: white; border: none;
-    padding: 10px 22px; border-radius: 100px;
+    padding: 9px 18px; border-radius: 100px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    font-size: 0.83rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; white-space: nowrap;
   }
   .sticky-cta:hover { opacity: 0.9; }
-  footer { padding-bottom: 90px; }
+  footer { padding-bottom: 72px; }
 
-  @media(max-width: 768px) {
-    .sticky-contact { padding: 12px 16px; }
-    .sticky-contact-left div span { display: none; }
-    .nav-linkedin svg + * { display: none; }
-    .nav-linkedin { padding: 10px 12px; }
+  @media (max-width: 480px) {
+    .sticky-contact { padding: 10px 14px; gap: 8px; }
+    .sticky-text span { display: none; }
+    .sticky-text strong { font-size: 0.8rem; }
+    .sticky-linkedin { padding: 9px 12px; }
+    .li-text { display: none; }
+    .sticky-cta { padding: 9px 14px; font-size: 0.8rem; }
   }
-
-  /* ADMIN TOGGLE */
-  .admin-toggle {
-    position: fixed; bottom: 24px; left: 24px; z-index: 998;
-    background: var(--ink); color: white; border: none;
-    padding: 10px 18px; border-radius: 100px;
-    font-size: 0.8rem; font-weight: 500; cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    opacity: 0.7; transition: opacity 0.2s;
-  }
-  .admin-toggle:hover { opacity: 1; }
 
   .leads-panel {
     position: fixed; bottom: 64px; left: 24px; z-index: 998;
@@ -1538,9 +1543,7 @@
 </div>
 
 <!-- ADMIN BUTTON -->
-<button class="admin-toggle" onclick="toggleLeadsPanel()">📋 My Leads (<span id="leadCount">0</span>)</button>
-
-<!-- LEADS PANEL -->
+<!-- leads panel hidden, admin access via keyboard only -->
 <div class="leads-panel" id="leadsPanel">
   <h3>📋 Leads <span style="font-family:'DM Sans',sans-serif;font-size:0.8rem;color:var(--muted);font-weight:400;" id="leadTotal"></span></h3>
   <div id="leadsList"></div>
@@ -1550,7 +1553,7 @@
 <div class="sticky-contact">
   <div class="sticky-contact-left">
     <div class="sticky-avatar">SC</div>
-    <div>
+    <div class="sticky-text">
       <strong>Sreenidhi Chandar</strong>
       <span>Senior Product Manager · Open to mentoring</span>
     </div>
@@ -1558,7 +1561,7 @@
   <div class="sticky-contact-right">
     <a href="https://www.linkedin.com/in/sreenidhichandar/" target="_blank" class="sticky-linkedin">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      Connect on LinkedIn
+      <span class="li-text">LinkedIn</span>
     </a>
     <button class="sticky-cta" onclick="openModal()">I'm Interested →</button>
   </div>
@@ -1568,14 +1571,42 @@
   let selectedPersona = null;
   let currentStep = 1;
   let leads = JSON.parse(localStorage.getItem('mentor_leads') || '[]');
+  let adminUnlocked = false;
+
+  // ─── REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT URL (Step 2 below) ───
+  const SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+  // ─────────────────────────────────────────────────────────────────────
 
   const personaLabels = {
-    fresher: { label: 'Fresher / Student', icon: '🎓' },
-    interview: { label: 'Interview Prepper', icon: '🎯' },
-    switch: { label: 'Career Switcher', icon: '🔄' },
-    direction: { label: 'Direction Seeker', icon: '🧭' },
-    experienced: { label: 'Experienced Professional', icon: '🚀' }
+    fresher:    { label: 'Fresher / Student',        icon: '🎓' },
+    interview:  { label: 'Interview Prepper',         icon: '🎯' },
+    switch:     { label: 'Career Switcher',           icon: '🔄' },
+    direction:  { label: 'Direction Seeker',          icon: '🧭' },
+    experienced:{ label: 'Experienced Professional',  icon: '🚀' }
   };
+
+  // ── SECRET ADMIN UNLOCK ──
+  // Type the word "admin" anywhere on the page to reveal the leads panel
+  let keyBuffer = '';
+  document.addEventListener('keydown', (e) => {
+    keyBuffer += e.key.toLowerCase();
+    if (keyBuffer.length > 10) keyBuffer = keyBuffer.slice(-10);
+    if (keyBuffer.includes('admin')) {
+      keyBuffer = '';
+      if (!adminUnlocked) {
+        const pwd = prompt('Enter admin password:');
+        if (pwd === 'sreenidhi2025') {
+          adminUnlocked = true;
+          updateLeadCount();
+          toggleLeadsPanel();
+        } else {
+          alert('Incorrect password.');
+        }
+      } else {
+        toggleLeadsPanel();
+      }
+    }
+  });
 
   function openModal(preset) {
     document.getElementById('modalOverlay').classList.add('open');
@@ -1621,7 +1652,7 @@
     document.getElementById('step2btn').disabled = !(name && phone && bg);
   }
 
-  function submitForm() {
+  async function submitForm() {
     const lead = {
       id: Date.now(),
       persona: selectedPersona,
@@ -1635,39 +1666,43 @@
       time: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
     };
 
+    // Save locally
     leads.unshift(lead);
     localStorage.setItem('mentor_leads', JSON.stringify(leads));
+
+    // ── Send to Google Sheets ──
+    if (SHEET_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+      try {
+        await fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(lead)
+        });
+      } catch (e) {
+        console.log('Sheet sync failed silently:', e);
+      }
+    }
 
     // Show success
     goToStep(3);
     document.getElementById('success-msg').textContent =
       `Got it, ${lead.name.split(' ')[0]}! I'll reach out on WhatsApp to ${lead.phone} within 24 hours. Looking forward to working with you!`;
 
-    // Show notification
-    showNotification(lead);
     updateLeadCount();
   }
 
-  function showNotification(lead) {
-    document.getElementById('notifContent').innerHTML = `
-      <div class="notif-lead-name">${lead.icon} ${lead.name}</div>
-      <div class="notif-lead-type">${lead.personaLabel} · ${lead.targetRole}</div>
-      <div class="notif-lead-msg">${lead.background}${lead.goal ? ' — ' + lead.goal.substring(0, 80) + '...' : ''}</div>
-    `;
-    document.getElementById('notifTime').textContent = 'Just now · ' + lead.phone;
-    const panel = document.getElementById('notifPanel');
-    panel.classList.add('show');
-    setTimeout(() => panel.classList.remove('show'), 8000);
-  }
-
   function updateLeadCount() {
-    document.getElementById('leadCount').textContent = leads.length;
-    document.getElementById('leadTotal').textContent = `${leads.length} total`;
+    if (adminUnlocked) {
+      document.getElementById('leadCount').textContent = leads.length;
+      document.getElementById('leadTotal').textContent = `${leads.length} total`;
+    }
     renderLeadsList();
   }
 
   function renderLeadsList() {
     const list = document.getElementById('leadsList');
+    if (!list) return;
     if (leads.length === 0) {
       list.innerHTML = '<div class="no-leads">No leads yet. Share your link to get started!</div>';
       return;
@@ -1695,10 +1730,7 @@
     if (panel.classList.contains('show')) renderLeadsList();
   }
 
-  // Init
-  updateLeadCount();
-
-  // Smooth reveal on scroll
+  // Scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) e.target.style.animation = 'fadeUp 0.6s ease both';
