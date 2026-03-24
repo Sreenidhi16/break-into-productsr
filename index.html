@@ -1492,7 +1492,8 @@
       </div>
       <div class="form-group">
         <label>Phone / WhatsApp Number *</label>
-        <input type="tel" id="fphone" placeholder="+91 98765 43210" oninput="checkStep2()">
+        <input type="tel" id="fphone" placeholder="9876543210 or +91 9876543210" oninput="checkStep2()">
+        <small style="color:var(--muted);font-size:0.75rem;margin-top:4px;display:block;">Either format works — with or without +91</small>
       </div>
       <div class="form-group">
         <label>Current Background *</label>
@@ -1653,13 +1654,17 @@
   }
 
   async function submitForm() {
+    // Clean phone — remove spaces, ensure safe string
+    const rawPhone = document.getElementById('fphone').value.trim();
+    const cleanPhone = rawPhone.replace(/\s+/g, ''); // remove spaces
+
     const lead = {
       id: Date.now(),
       persona: selectedPersona,
       personaLabel: personaLabels[selectedPersona].label,
       icon: personaLabels[selectedPersona].icon,
       name: document.getElementById('fname').value.trim(),
-      phone: document.getElementById('fphone').value.trim(),
+      phone: cleanPhone,
       background: document.getElementById('fbackground').value.trim(),
       targetRole: document.getElementById('frole').value || 'Not specified',
       goal: document.getElementById('fgoal').value.trim(),
