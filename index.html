@@ -50,18 +50,18 @@
   .nav-logo span { color: var(--accent); }
 
   .nav-cta {
-    background: var(--ink);
-    color: var(--cream);
+    background: var(--accent);
+    color: white;
     border: none;
     padding: 10px 22px;
     border-radius: 100px;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
   }
-  .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+  .nav-cta:hover { background: #b03d23; transform: translateY(-1px); }
 
   /* HERO */
   .hero {
@@ -177,8 +177,32 @@
   }
   .btn-linkedin-hero:hover { background: #005f91; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,119,181,0.3); }
 
-  /* HERO CARD */
-  .hero-card {
+  /* HERO PROMISE BAR */
+  .hero-promise {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    background: white; border: 1px solid var(--border);
+    border-radius: 100px; padding: 10px 20px;
+    margin-bottom: 28px; width: fit-content;
+  }
+  .hp-item { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
+  .hp-divider { color: var(--border); font-size: 1rem; }
+  .hp-highlight { color: var(--accent); font-weight: 700; }
+
+  /* SUBMIT BUTTON LOADING */
+  .modal-btn.loading {
+    opacity: 0.8; cursor: wait;
+    position: relative; overflow: hidden;
+  }
+  .modal-btn.loading::after {
+    content: '';
+    position: absolute; left: -100%; top: 0; bottom: 0; width: 60%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    animation: shimmer 0.8s infinite;
+  }
+  @keyframes shimmer {
+    from { left: -100%; }
+    to { left: 200%; }
+  }
     background: white;
     border-radius: 24px;
     padding: 36px;
@@ -368,11 +392,17 @@
   }
   .offering-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.07); }
   .offering-card.featured {
-    background: var(--ink); color: white;
-    border-color: var(--ink);
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
   }
-  .offering-card.featured .offering-desc { color: rgba(255,255,255,0.6); }
-  .offering-card.featured .offering-tag { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); }
+  .offering-card.featured .offering-desc { color: rgba(255,255,255,0.8); }
+  .offering-card.featured .offering-tag { background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.2); }
+  .offering-card.featured h3 { color: white; }
+  .offering-card.featured .offering-cta {
+    background: white; color: var(--accent);
+  }
+  .offering-card.featured .offering-cta:hover { background: var(--cream); }
 
   .offering-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
 
@@ -825,7 +855,7 @@
     transition: all 0.2s; white-space: nowrap;
   }
   .sticky-cta:hover { opacity: 0.9; }
-  footer { padding-bottom: 72px; }
+  footer { padding-bottom: 40px; }
 
   @media (max-width: 480px) {
     .sticky-contact { padding: 10px 14px; gap: 8px; }
@@ -900,11 +930,11 @@
 
     .hero { padding: 90px 16px 50px; min-height: auto; }
     .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-    .hero-card { display: none; }
+    .hero-card { display: block; }
     .hero-headline { font-size: 2.6rem; }
     .hero-sub { font-size: 0.97rem; }
     .hero-actions { flex-direction: column; }
-    .btn-primary, .btn-secondary { width: 100%; justify-content: center; padding: 15px 20px; }
+    .btn-primary, .btn-linkedin-hero { width: 100%; justify-content: center; padding: 15px 20px; }
 
     .ticker-wrap { padding: 12px 0; }
 
@@ -936,22 +966,17 @@
 
     .final-cta { padding: 70px 16px; }
 
-    .sticky-contact { padding: 10px 16px; }
-    .sticky-contact-left div span { display: none; }
-    .sticky-contact-left div strong { font-size: 0.82rem; }
-    .sticky-linkedin { padding: 9px 14px; font-size: 0.82rem; }
-    .sticky-cta { padding: 9px 16px; font-size: 0.82rem; }
+    .sticky-contact { display: none; }
 
     .modal { padding: 28px 18px; border-radius: 20px; }
     .modal h2 { font-size: 1.5rem; }
     .persona-options { grid-template-columns: 1fr !important; }
     .persona-option { padding: 16px; }
 
-    .admin-toggle { bottom: 70px; left: 12px; font-size: 0.75rem; padding: 8px 14px; }
-    .leads-panel { left: 12px; width: calc(100vw - 24px); bottom: 110px; }
-    .notif-panel { right: 12px; left: 12px; max-width: none; bottom: 70px; }
+    .leads-panel { left: 12px; width: calc(100vw - 24px); bottom: 20px; }
+    .notif-panel { right: 12px; left: 12px; max-width: none; bottom: 20px; }
 
-    footer { padding: 24px 16px 90px; font-size: 0.8rem; }
+    footer { padding: 24px 16px 32px; font-size: 0.8rem; }
   }
 
   @media (max-width: 900px) and (min-width: 769px) {
@@ -991,6 +1016,14 @@
       <p class="hero-sub">
         1:1 mentorship by <strong>Sreenidhi Chandar</strong> — for freshers breaking in, professionals switching roles, and experienced folks levelling up in PM, PO & BA careers. Real frameworks, AI tools, and hands-on practice.
       </p>
+
+      <div class="hero-promise">
+        <span class="hp-item">📵 Not a course</span>
+        <span class="hp-divider">·</span>
+        <span class="hp-item">👥 Not a cohort</span>
+        <span class="hp-divider">·</span>
+        <span class="hp-item hp-highlight">✦ Just you and me</span>
+      </div>
       <div class="hero-actions">
         <button class="btn-primary" onclick="openModal()">I'm Interested →</button>
         <a href="https://www.linkedin.com/in/sreenidhichandar/" target="_blank" class="btn-linkedin-hero">
@@ -1081,11 +1114,11 @@
       <div class="persona-card" onclick="openModal('interview')">
         <span class="persona-icon">🎯</span>
         <h3>The Interview Prepper</h3>
-        <p>You have applications out and interviews lined up, but you're not yet confident about case study rounds, mock PIs, or structuring product answers.</p>
+        <p>You have applications out and interviews lined up, but you're not yet confident about case study rounds, mock Personal Interviews, or structuring product answers.</p>
         <ul class="persona-pains">
           <li>Struggling with case study and product sense rounds</li>
           <li>Not sure how to structure my answers clearly</li>
-          <li>Need realistic mock interview practice</li>
+          <li>Need realistic mock interview and Personal Interview practice</li>
           <li>Want detailed, honest feedback session by session</li>
         </ul>
       </div>
@@ -1654,9 +1687,15 @@
   }
 
   async function submitForm() {
-    // Clean phone — remove spaces, ensure safe string
+    // Instant UI feedback — don't make user wait for network
+    const btn = document.getElementById('step2btn');
+    btn.textContent = 'Submitting...';
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    // Clean phone — remove spaces
     const rawPhone = document.getElementById('fphone').value.trim();
-    const cleanPhone = rawPhone.replace(/\s+/g, ''); // remove spaces
+    const cleanPhone = rawPhone.replace(/\s+/g, '');
 
     const lead = {
       id: Date.now(),
@@ -1675,26 +1714,22 @@
     leads.unshift(lead);
     localStorage.setItem('mentor_leads', JSON.stringify(leads));
 
-    // ── Send to Google Sheets ──
-    if (SHEET_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-      try {
-        await fetch(SHEET_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(lead)
-        });
-      } catch (e) {
-        console.log('Sheet sync failed silently:', e);
-      }
-    }
-
-    // Show success
+    // Show success immediately — don't block on network
     goToStep(3);
     document.getElementById('success-msg').textContent =
       `Got it, ${lead.name.split(' ')[0]}! I'll reach out on WhatsApp to ${lead.phone} within 24 hours. Looking forward to working with you!`;
 
     updateLeadCount();
+
+    // Send to Google Sheets in background — fire and forget
+    if (SHEET_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+      fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead)
+      }).catch(e => console.log('Sheet sync failed silently:', e));
+    }
   }
 
   function updateLeadCount() {
