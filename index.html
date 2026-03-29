@@ -179,14 +179,23 @@
 
   /* HERO PROMISE BAR */
   .hero-promise {
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 12px; flex-wrap: nowrap;
     background: white; border: 1px solid var(--border);
     border-radius: 100px; padding: 10px 20px;
     margin-bottom: 28px; width: fit-content;
   }
-  .hp-item { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
-  .hp-divider { color: var(--border); font-size: 1rem; }
+  .hp-item { font-size: 0.85rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
+  .hp-divider { color: var(--border); font-size: 1rem; flex-shrink: 0; }
   .hp-highlight { color: var(--accent); font-weight: 700; }
+
+  @media (max-width: 480px) {
+    .hero-promise {
+      flex-direction: column; align-items: flex-start;
+      border-radius: 16px; gap: 6px; padding: 14px 18px; width: 100%;
+    }
+    .hp-divider { display: none; }
+    .hp-item { font-size: 0.88rem; }
+  }
 
   /* SUBMIT BUTTON LOADING */
   .modal-btn.loading {
@@ -269,7 +278,7 @@
     color: var(--accent);
     display: block;
   }
-  .stat-box .label { font-size: 0.75rem; color: var(--muted); }
+  .stat-box .label { font-size: 0.7rem; color: var(--muted); line-height: 1.3; }
 
   .hero-card .tags {
     display: flex; flex-wrap: wrap; gap: 8px;
@@ -1041,7 +1050,7 @@
         </div>
         <div class="stat-box">
           <span class="num">3</span>
-          <span class="label">Roles Covered</span>
+          <span class="label">Product Roles Covered</span>
         </div>
         <div class="stat-box">
           <span class="num">4.9★</span>
