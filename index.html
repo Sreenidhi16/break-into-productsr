@@ -179,22 +179,18 @@
 
   /* HERO PROMISE BAR */
   .hero-promise {
-    display: flex; align-items: center; gap: 12px; flex-wrap: nowrap;
+    display: flex; align-items: center; gap: 10px; flex-wrap: nowrap;
     background: white; border: 1px solid var(--border);
-    border-radius: 100px; padding: 10px 20px;
-    margin-bottom: 28px; width: fit-content;
+    border-radius: 100px; padding: 10px 18px;
+    margin-bottom: 28px; width: fit-content; max-width: 100%;
   }
-  .hp-item { font-size: 0.85rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
-  .hp-divider { color: var(--border); font-size: 1rem; flex-shrink: 0; }
+  .hp-item { font-size: 0.82rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
+  .hp-divider { color: var(--border); font-size: 0.9rem; flex-shrink: 0; }
   .hp-highlight { color: var(--accent); font-weight: 700; }
 
   @media (max-width: 480px) {
-    .hero-promise {
-      flex-direction: column; align-items: flex-start;
-      border-radius: 16px; gap: 6px; padding: 14px 18px; width: 100%;
-    }
-    .hp-divider { display: none; }
-    .hp-item { font-size: 0.88rem; }
+    .hero-promise { gap: 7px; padding: 9px 14px; }
+    .hp-item { font-size: 0.75rem; }
   }
 
   /* SUBMIT BUTTON LOADING */
@@ -1020,9 +1016,9 @@
       </p>
 
       <div class="hero-promise">
-        <span class="hp-item">📵 Not a course</span>
+        <span class="hp-item">📵 No courses</span>
         <span class="hp-divider">·</span>
-        <span class="hp-item">👥 Not a cohort</span>
+        <span class="hp-item">👥 No cohorts</span>
         <span class="hp-divider">·</span>
         <span class="hp-item hp-highlight">✦ Just you and me</span>
       </div>
